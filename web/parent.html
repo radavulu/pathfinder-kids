@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PathfinderKids · Parent</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/app.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand">Parent dashboard</div>
+      <a class="btn ghost" href="/">Back to profiles</a>
+    </div>
+
+    <div class="card card-spaced">
+      <h2 class="card-heading">Generate worksheets</h2>
+      <p class="note">Create fresh problem sets for <b>today</b> with LM Studio (must be running). Reading &amp; Logic can take 30–90 seconds per child — a timer shows while it works.</p>
+      <button class="btn" id="genAll" type="button">Generate new sets (all kids)</button>
+      <div id="genResult" class="note note-spaced"></div>
+    </div>
+
+    <div id="overview" class="grid grid-spaced"></div>
+
+    <div class="card card-spaced">
+      <h2 class="card-heading">LM Studio</h2>
+      <label for="lmUrl">Server URL</label>
+      <input id="lmUrl" placeholder="http://localhost:1234/v1" />
+      <label for="lmModel">Model (leave blank to auto-detect the loaded model)</label>
+      <input id="lmModel" placeholder="auto-detect" />
+      <div class="btn-row">
+        <button class="btn" id="lmSave" type="button">Save</button>
+        <button class="btn ghost" id="lmTest" type="button">Test connection</button>
+      </div>
+      <div id="lmStatus" class="note note-spaced"></div>
+    </div>
+
+    <div class="card card-spaced">
+      <h2 class="card-heading">Mascot</h2>
+      <p class="note">The friendly character who cheers the kids on.</p>
+      <label for="mascotName">Mascot name</label>
+      <input id="mascotName" placeholder="Sparky the Star" />
+      <div class="btn-row">
+        <button class="btn" id="mascotSave" type="button">Save</button>
+        <span id="mascotStatus" class="note note-inline"></span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 class="card-heading">Data location</h2>
+      <div id="dataInfo" class="note"></div>
+    </div>
+  </div>
+
+  <div id="genOverlay" class="gen-overlay hidden" aria-live="polite">
+    <div class="gen-modal card">
+      <div class="gen-spinner" aria-hidden="true"></div>
+      <h2 id="genTitle" class="gen-modal-title">Generating worksheets…</h2>
+      <p id="genStatus" class="note">Talking to LM Studio. Math is fast; Reading &amp; Logic take longer.</p>
+      <div class="gen-timer" id="genTimer">0:00</div>
+    </div>
+  </div>
+
+  <script src="/static/common.js"></script>
+  <script src="/static/parent.js"></script>
+</body>
+</html>

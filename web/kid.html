@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PathfinderKids</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/app.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand"><span id="mascot"></span> <span id="kidName">…</span></div>
+      <div class="statbar">
+        <span class="stat">⭐ <span id="stars">0</span></span>
+        <span class="stat">🔥 <span id="streak">0</span></span>
+        <a class="btn ghost" href="/">Switch</a>
+      </div>
+    </div>
+
+    <!-- TODAY -->
+    <section id="todayView">
+      <h1>Today's set</h1>
+      <p class="note">Pick a subject to begin. Each one has a time goal — do your best!</p>
+      <div id="subjects" class="grid" style="margin-top:16px"></div>
+    </section>
+
+    <!-- SESSION -->
+    <section id="sessionView" class="hidden">
+      <div class="session-head">
+        <button class="btn ghost" id="doneBtn">I'm done</button>
+        <div class="timer" id="timer">15:00</div>
+      </div>
+      <div class="session-layout">
+        <div class="session-main">
+          <div class="skilltag" id="skillTag"></div>
+          <div class="problem" id="problem">…</div>
+          <div id="answerArea"></div>
+        </div>
+        <aside class="session-sidebar">
+          <div class="session-stats card">
+            <h3 class="session-stats-title">This session</h3>
+            <div class="stat-grid">
+              <div class="stat-box">
+                <span class="stat-num" id="statDone">0</span>
+                <span class="stat-lbl">Done</span>
+              </div>
+              <div class="stat-box stat-box-ok">
+                <span class="stat-num" id="statCorrect">0</span>
+                <span class="stat-lbl">Correct</span>
+              </div>
+              <div class="stat-box stat-box-bad">
+                <span class="stat-num" id="statWrong">0</span>
+                <span class="stat-lbl">Wrong</span>
+              </div>
+            </div>
+          </div>
+          <div class="coach-panel card hidden" id="coachPanel">
+            <div class="coach-label" id="coachLabel">Hint</div>
+            <div class="coach-body" id="coachBody"></div>
+            <div class="coach-extra hidden" id="coachExtra"></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <!-- CELEBRATE -->
+    <section id="celebrateView" class="hidden">
+      <div class="card celebrate">
+        <div id="celebMascot"></div>
+        <h1 id="celebTitle">Nice work!</h1>
+        <p id="celebBody" class="note"></p>
+        <div id="celebBadges"></div>
+        <button class="btn ghost hidden" id="easierBtn" style="margin-top:14px">Too hard? Make it easier next time</button>
+        <button class="btn big" id="backBtn" style="margin-top:18px">Back to my set</button>
+      </div>
+    </section>
+  </div>
+
+  <script src="/static/common.js"></script>
+  <script src="/static/kid.js"></script>
+</body>
+</html>

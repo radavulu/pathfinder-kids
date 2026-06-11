@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PathfinderKids</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/app.css" />
+</head>
+<body>
+  <div class="wrap">
+    <div class="topbar">
+      <div class="brand"><span id="mascot"></span> PathfinderKids</div>
+      <a class="btn ghost" href="/parent">Parent area</a>
+    </div>
+
+    <h1>Who's learning today?</h1>
+    <p class="note">Tap your name to start your daily set.</p>
+
+    <div id="profiles" class="grid cards" style="margin-top:18px"></div>
+  </div>
+
+  <script src="/static/common.js"></script>
+  <script>
+    async function load() {
+      const data = await api("/api/children");
+      document.getElementById("mascot").innerHTML = mascotSVG("happy");
+      const box = document.getElementById("profiles");
+      box.innerHTML = "";
+      data.children.forEach((c) => {
+        const card = el("div", { class: "card profile" });
+        card.style.borderColor = c.theme.primary;
+        const av = el("div", { class: "avatar" }, initials(c.name));
+        av.style.background = c.theme.primary;
+        card.appendChild(av);
+        card.appendChild(el("h2", {}, c.name));
+        card.appendChild(el("div", {}, [
+          el("span", { class: "pill" }, "⭐ " + c.stars),
+          el("span", { class: "pill" }, "🔥 " + c.streak + " day"),
+        ]));
+        card.addEventListener("click", () => location.href = "/kid?child=" + c.id);
+        box.appendChild(card);
+      });
+    }
+    load().catch((e) => alert("Could not load profiles: " + e.message));
+  </script>
+</body>
+</html>

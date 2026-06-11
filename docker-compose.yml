@@ -1,0 +1,16 @@
+services:
+  homekumon:
+    build: .
+    image: homekumon:latest
+    ports:
+      - "${HOMEKUMON_PORT:-8700}:${HOMEKUMON_PORT:-8700}"
+    environment:
+      HOMEKUMON_LMSTUDIO_URL: http://host.docker.internal:1234/v1
+      HOMEKUMON_DATA_DIR: /data
+      HOMEKUMON_HOST: 0.0.0.0
+      HOMEKUMON_PORT: "${HOMEKUMON_PORT:-8700}"
+    volumes:
+      - ${HOMEKUMON_DATA_DIR:-./data}:/data
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    restart: unless-stopped
