@@ -1,0 +1,6 @@
+[
+  "tests/test_content.py::test_concurrent_next_problem_claims",
+  "tests/test_content.py::test_reset_all_under_concurrent_claims",
+  "tests/test_content.py::test_reset_today_clears_and_regenerates",
+  "tests/test_content.py::test_sync_refreshes_stale_reading_queue"
+]
